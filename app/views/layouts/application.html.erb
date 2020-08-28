@@ -10,11 +10,15 @@
   </head>
 
   <body class="container">
+    
     <div class="row">
       <div class="col-md-12">
         <%= render 'shared/nav' %>
+        <%= render 'shared/notifications' %>
+
         <%= yield %>
       </div>
     </div>
   </body>
 </html>
+

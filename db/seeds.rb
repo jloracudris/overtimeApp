@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 user = User.create(email: "tes@test.com", password: "asdfasdf", password_confirmation: "asdfasdf", first_name: "Foo", last_name: "Bar")
 
+User.create(email: "admin_test@test.com", password: "asdfasdf", password_confirmation: "asdfasdf", first_name: "Foo", last_name: "Bar")
+
 100.times do |post| 
     Post.create!(date: Date.today, rationale: "#{post} rationale content", user_id: user.id)
 end

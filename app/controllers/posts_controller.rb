@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
-    before_action :set_post, only: [:show, :edit, :update]
+    before_action :set_post, only: [:show, :edit, :update, :destroy]
     def index
-        @post = Post.all
+        @post = current_user.posts
     end
 
     def new
@@ -20,9 +20,12 @@ class PostsController < ApplicationController
     end
 
     def edit 
+        authorize @post
     end 
 
     def update
+        authorize @post
+
         if @post.update(post_params)
             redirect_to @post, notice: 'Your post was updated succesfully'
         else
@@ -33,9 +36,14 @@ class PostsController < ApplicationController
     def show
     end
 
+    def destroy
+        @post.delete
+        redirect_to posts_path, notice: 'Your post was deleted succesfully'
+    end
+
     private 
         def post_params
-            params.require(:post).permit(:date, :rationale)
+            params.require(:post).permit(:date, :rationale, :status)
         end
 
         def set_post
